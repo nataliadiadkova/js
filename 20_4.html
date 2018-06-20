@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>регулярные выражения</title>
+</head>
+<body>
+	<form action="file.php" id="search">
+		<input type="text" id="what" placeholder="Поиск">
+		<input type="button" value="Найти" id="button"><br>
+
+		<input type="checkbox" id="icase">
+		<label for="icase">Игнорировать регистр</label><br>
+
+		<input type="checkbox" id="full">
+		<label for="full">Точное соответствие</label><br>
+		
+
+	</form>
+	<hr>
+	<div id="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto aut architecto deleniti sit reprehenderit soluta quia, provident eius laborum. Qui asperiores totam impedit dicta voluptas inventore veritatis eaque molestias, culpa dignissimos iusto officia voluptate harum ex blanditiis quos, ullam facere vel reiciendis. Quam non, quod veniam fugiat sapiente commodi, sunt facere consequatur, voluptas et quos qui aspernatur quasi in laudantium iste illo, rem aperiam tempore similique! Culpa eveniet error autem temporibus eos possimus reprehenderit voluptates atque at, iure quaerat facilis tempora fuga fugiat quas veniam odit sequi impedit, ad minima? Consequatur deserunt totam aperiam et corrupti quas adipisci minus nostrum!</div>
+
+	<script>
+	function el(id){
+		return document.getElementById(id);
+	}
+	el("button").onclick = function(){
+		var what = el("what").value;//узнали что  введено пользователем 
+		console.log(what);
+		var keys = "g";
+
+		if(el("icase").checked){
+			keys+="i";
+		}
+		// "\\b\("+what+"\)"\\b"
+		var f = "";
+		if(el("full").checked){
+			f="\\b";
+		}
+		var reg = new RegExp(f+"\("+what+"\)"+f, keys);
+		console.log(reg);
+
+		
+		console.log(start_text);
+		el("text").innerHTML = start_text.replace(reg, "<span style='background:#F90'>$1</span>");
+	}
+	var start_text = el("text").innerHTML;
+
+	</script>
+</body>
+</html>

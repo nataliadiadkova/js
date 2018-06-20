@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20_1</title>
+	<style>
+	.rect{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 50px;
+		height: 50px;
+		background: #ff0;
+		border-radius: 50%
+
+	}
+	#bg{
+		width: 1000px;
+		height: 1000px;
+	}
+	</style>
+</head>
+<body>
+	<div id="bg">
+		<div class="rect"></div>
+	</div>
+
+	<script>
+	console.log("PI: ", Math.PI); // число пи 
+	console.log(Math.pow(2,5)); // возведение в степень 
+	console.log(Math.sqrt(9)); // квадратный корень из числа 
+	console.log(Math.max(2,5,1));
+	console.log(Math.min(2,5,1));
+
+	console.log(Math.ceil(5.00001)); // округление в большую сторону 
+	console.log(Math.floor(5.99999));//округление в меньшую сторону 
+	console.log(Math.round(5.5));
+
+	console.log(Math.random());//случайныче число 0-1
+	console.log(Math.round(Math.random()*10));
+	console.log(Math.round(Math.random()*7+3));
+
+	function rand(min, max){
+		return Math.round(Math.random()*(max-min)+min);
+	}
+
+	document.body.style.background = "rgb("+rand(0,255)+","+rand(0,255)+","+rand(0,255)+")";
+	//console.log(Math.random()*10);
+	// 1 гард = PI/180;
+	// 90 град = 90*PI/180;
+
+	console.log(Math.sin(90*Math.PI/180));
+	console.log(Math.round(Math.cos(90*Math.PI/180)));
+
+	var R = 50;
+	var L = 45;
+
+	var rect = document.getElementsByClassName("rect")[0];
+	var bg = document.getElementById('bg');
+	var coordX = coordY=0;
+	setInterval(function(){
+		L++;
+	 	var x = R*Math.cos(L*Math.PI/180);
+	 	var y = R*Math.sin(L*Math.PI/180);	
+	 	rect.style.top = x+coordY+"px"
+	 	rect.style.left = y+coordX+"px"
+
+},1)
+	//var body = document.body;
+
+	bg.onmousemove = function(event){
+		coordX=event.clientX;
+		coordY=event.clientY
+
+		/*var fieldCoords = this.getBoundingClientRect();
+		var fieldInnerCoords = {
+        	top: fieldCoords.top + bg.clientTop,
+        	left: fieldCoords.left + bg.clientLeft
+      };
+      var ballCoords = {
+        top: event.clientY - fieldInnerCoords.top - rect.clientHeight / 2,
+        left: event.clientX - fieldInnerCoords.left - rect.clientWidth / 2
+      };
+      rect.style.left = ballCoords.left +'px';
+      rect.style.top = ballCoords.top +'px';
+		
+*/
+     
+
+	}
+	
+
+	</script>
+</body>
+</html>
